@@ -1,0 +1,1294 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tualang Sawit — Info Harga TBS & Katalog Komoditas Sawit Terpercaya</title>
+  
+  <!-- Content-Security-Policy (CSP) Ketat untuk Hosting Statis (GitHub Pages / Fallback) -->
+  <!-- Catatan: Pada environment preview ini Tailwind CDN & Google Fonts diizinkan secara eksplisit tanpa wildcard (*) atau unsafe-eval -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com 'unsafe-inline'; style-src 'self' https://fonts.googleapis.com 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://placehold.co; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://wa.me;" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <!-- Tipografi Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            sawit: {
+              dark: '#005A32',      // 30% Hijau Tua Utama
+              darker: '#004224',
+              light: '#C7E9C0',     // 10% Hijau Muda Lembut
+              soft: '#F2FAF0',
+              amber: '#D97706',     // 10% Aksen Emas Hangat
+              amberHover: '#B45309'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom Scrollbar & Animasi Halus */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFFFFF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C7E9C0;
+      border-radius: 9999px;
+      border: 2px solid #FFFFFF;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #005A32;
+    }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeUp {
+      from { transform: translateY(12px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-drawer {
+      animation: slideInRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .animate-toast {
+      animation: fadeUp 0.25s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-[#C7E9C0] selection:text-[#005A32] overflow-x-hidden">
+
+  <!-- ==================== TOP LIVE TICKER BAR (HARGA SAWIT HARIAN) ==================== -->
+  <div class="bg-[#005A32] text-white text-xs sm:text-sm py-2 px-4 border-b border-[#C7E9C0]/20">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex h-2 w-2 rounded-full bg-[#C7E9C0] animate-ping"></span>
+        <span class="font-semibold tracking-wide text-[#C7E9C0]">UPDATE HARGA SAWIT HARI INI:</span>
+        <span id="live-date-label" class="text-white/90">Memuat tanggal...</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-xs sm:text-sm font-medium">
+        <span>TBS Inti (10-20 Thn): <strong class="text-[#C7E9C0]">Rp 3.180/kg</strong> <span class="text-emerald-300">(+Rp 45)</span></span>
+        <span class="hidden md:inline text-white/30">|</span>
+        <span class="hidden sm:inline">CPO KPBN: <strong class="text-amber-300">Rp 14.450/kg</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== HEADER NAVIGASI RESPONSIF ==================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+        
+        <!-- Logo Brand -->
+        <a href="#beranda" class="flex items-center gap-3 group focus:outline-none">
+          <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[#005A32] flex items-center justify-center shadow-md shadow-[#005A32]/20 group-hover:scale-105 transition-transform">
+            <!-- SVG Ikon Tandan Sawit -->
+            <svg class="w-6 h-6 text-[#C7E9C0]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20" />
+              <path d="M12 6c-3.5-2-7-1-8 2 3 0 6 1 8 3" />
+              <path d="M12 6c3.5-2 7-1 8 2-3 0-6 1-8 3" />
+              <path d="M12 12c-4-2.5-8-1-9 2.5 3.5 0 6.5 1.5 9 3.5" />
+              <path d="M12 12c4-2.5 8-1 9 2.5-3.5 0-6.5 1.5-9 3.5" />
+              <circle cx="12" cy="18" r="2.5" fill="#D97706" stroke="none" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-lg sm:text-xl font-extrabold tracking-tight text-[#005A32] block leading-none">Tualang Sawit</span>
+            <span class="text-[11px] font-medium text-slate-500 tracking-wider uppercase">Bursa & Katalog Sawit</span>
+          </div>
+        </a>
+
+        <!-- Menu Desktop -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+          <a href="#beranda" class="hover:text-[#005A32] transition-colors py-2">Beranda</a>
+          <a href="#katalog" class="hover:text-[#005A32] transition-colors py-2">Katalog & Harga</a>
+          <a href="#tentang" class="hover:text-[#005A32] transition-colors py-2">Tentang Kami</a>
+          <button type="button" id="btn-open-security-modal-desktop" class="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full bg-[#C7E9C0]/50 text-[#005A32] hover:bg-[#C7E9C0] transition-colors">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+            Arsitektur &amp; Vercel Config
+          </button>
+        </nav>
+
+        <!-- Tombol Aksi Kanan (Keranjang & Menu Mobile) -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button type="button" id="btn-open-cart" aria-label="Buka Keranjang Pesanan" class="relative inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#005A32] hover:bg-[#004224] text-white text-sm font-semibold shadow-sm transition-all active:scale-95">
+            <svg class="w-5 h-5 text-[#C7E9C0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+            <span class="hidden sm:inline">Keranjang</span>
+            <span id="cart-badge" class="inline-flex items-center justify-center min-w-[22px] h-[22px] px-1.5 text-xs font-bold rounded-full bg-[#D97706] text-white">0</span>
+          </button>
+
+          <!-- Hamburger Mobile -->
+          <button type="button" id="btn-mobile-menu" aria-label="Buka Navigasi" class="md:hidden p-2.5 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dropdown Menu Mobile -->
+      <div id="mobile-nav-panel" class="hidden md:hidden pb-4 pt-2 border-t border-slate-100 space-y-2">
+        <a href="#beranda" class="mobile-nav-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-[#C7E9C0]/40 hover:text-[#005A32]">Beranda</a>
+        <a href="#katalog" class="mobile-nav-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-[#C7E9C0]/40 hover:text-[#005A32]">Katalog &amp; Harga Sawit</a>
+        <a href="#tentang" class="mobile-nav-link block px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-700 hover:bg-[#C7E9C0]/40 hover:text-[#005A32]">Tentang Kami</a>
+        <button type="button" id="btn-open-security-modal-mobile" class="w-full text-left flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold bg-[#C7E9C0]/50 text-[#005A32]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          Lihat Kode Produksi &amp; Security Headers
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION (50% PUTIH, 30% HIJAU, 10% HIJAU MUDA, 10% AMBER) ==================== -->
+  <section id="beranda" class="relative bg-white overflow-hidden pt-8 pb-14 sm:pt-14 sm:pb-20 border-b border-slate-100">
+    <!-- Dekorasi Latar Lembut -->
+    <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#C7E9C0]/40 blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-10 w-72 h-72 rounded-full bg-[#005A32]/5 blur-2xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Kolom Teks Utama (7 Kolom) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C7E9C0] text-[#005A32] text-xs sm:text-sm font-bold tracking-wide">
+            <span class="w-2 h-2 rounded-full bg-[#005A32]"></span>
+            Mitra Resmi Petani, RAM &amp; Pabrik Kelapa Sawit
+          </div>
+
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            Transparansi Harga <span class="text-[#005A32]">TBS Sawit</span> &amp; Pasokan Sarana Kebun Terlengkap
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+            Pantau pergerakan harga Tandan Buah Segar (TBS) harian berbasis rendemen aktual, pesan bibit unggul bersertifikat DxP Tenera, pupuk NPK formulasi sawit, hingga cangkang sawit (PKS) langsung terhubung ke tim niaga kami.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 pt-2">
+            <a href="#katalog" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#005A32] hover:bg-[#004224] text-white font-bold text-sm sm:text-base shadow-lg shadow-[#005A32]/20 transition-all">
+              <span>Lihat Katalog &amp; Harga</span>
+              <svg class="w-5 h-5 text-[#C7E9C0]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+            <button type="button" id="btn-hero-wa-consult" class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#D97706] hover:bg-[#B45309] text-white font-bold text-sm sm:text-base shadow-md transition-all">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+              <span>Konsultasi Jual Beli DO</span>
+            </button>
+          </div>
+
+          <!-- Kepercayaan / Statistik Singkat -->
+          <div class="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+            <div>
+              <p class="text-xl sm:text-2xl font-extrabold text-[#005A32]">100%</p>
+              <p class="text-xs sm:text-sm text-slate-500">Timbangan Digital Tera</p>
+            </div>
+            <div>
+              <p class="text-xl sm:text-2xl font-extrabold text-[#005A32]">24 Jam</p>
+              <p class="text-xs sm:text-sm text-slate-500">Pelunasan Transfer</p>
+            </div>
+            <div>
+              <p class="text-xl sm:text-2xl font-extrabold text-[#D97706]">4.9/5</p>
+              <p class="text-xs sm:text-sm text-slate-500">Kepuasan Mitra Tani</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Kolom Kartu Indikator Harga Sawit Hari Ini (5 Kolom) -->
+        <div class="lg:col-span-5">
+          <div class="rounded-3xl bg-[#005A32] text-white p-6 sm:p-8 shadow-2xl shadow-[#005A32]/20 border border-[#C7E9C0]/30 relative overflow-hidden">
+            <div class="flex items-center justify-between border-b border-white/15 pb-4 mb-5">
+              <div>
+                <span class="text-xs uppercase tracking-wider text-[#C7E9C0] font-bold">Papan Informasi Harga</span>
+                <h2 class="text-lg sm:text-xl font-bold mt-0.5">Indikator Komoditas Sawit</h2>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-[#C7E9C0] text-[#005A32] text-xs font-extrabold">AKTIF</span>
+            </div>
+
+            <div class="space-y-3.5">
+              <!-- Baris Harga 1 -->
+              <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-[#C7E9C0] font-medium">TBS Umur 10 - 20 Tahun (Super)</p>
+                  <p class="text-lg font-extrabold">Rp 3.180 <span class="text-xs font-normal text-white/80">/ kg</span></p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-400/20 text-emerald-200 text-xs font-bold">+1.4%</span>
+              </div>
+
+              <!-- Baris Harga 2 -->
+              <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-[#C7E9C0] font-medium">TBS Umur 3 - 5 Tahun (Buah Pasir)</p>
+                  <p class="text-lg font-extrabold">Rp 2.690 <span class="text-xs font-normal text-white/80">/ kg</span></p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-emerald-400/20 text-emerald-200 text-xs font-bold">+1.1%</span>
+              </div>
+
+              <!-- Baris Harga 3 -->
+              <div class="p-3.5 rounded-2xl bg-white/10 backdrop-blur-sm flex items-center justify-between">
+                <div>
+                  <p class="text-xs text-[#C7E9C0] font-medium">Brondolan Segar Bersih</p>
+                  <p class="text-lg font-extrabold">Rp 3.450 <span class="text-xs font-normal text-white/80">/ kg</span></p>
+                </div>
+                <span class="px-2.5 py-1 rounded-lg bg-amber-400/20 text-amber-200 text-xs font-bold">Permintaan Tinggi</span>
+              </div>
+
+              <!-- Baris Harga 4 -->
+              <div class="p-3.5 rounded-2xl bg-[#C7E9C0] text-[#005A32] flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-bold uppercase opacity-80">Acuan CPO Internasional / KPBN</p>
+                  <p class="text-lg font-extrabold">Rp 14.450 <span class="text-xs font-semibold">/ kg</span></p>
+                </div>
+                <span class="text-xs font-extrabold px-2.5 py-1 rounded-lg bg-[#005A32] text-white">Kualitas Ekspor</span>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-white/75 mt-4 leading-relaxed">
+              *Harga berlaku di RAM Utama Tualang Sawit dengan syarat buah matang panen (fraksi 2-3) dan tidak mentah/busuk.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== KATALOG PRODUK & HARGA SAWIT ==================== -->
+  <section id="katalog" class="py-14 sm:py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Header Bagian Katalog -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <span class="inline-block px-3 py-1 rounded-full bg-[#C7E9C0] text-[#005A32] text-xs font-bold uppercase tracking-wider mb-2">
+            Katalog Niaga &amp; Sarana Produksi
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+            Daftar Harga Komoditas &amp; Kebutuhan Kebun
+          </h2>
+          <p class="text-slate-600 text-sm sm:text-base mt-1.5 max-w-2xl">
+            Pilih hasil panen sawit atau sarana produksi perkebunan yang Anda butuhkan. Klik <strong>Tambah ke Keranjang</strong> untuk menghitung estimasi biaya dan kirim pesanan via WhatsApp.
+          </p>
+        </div>
+
+        <!-- Input Pencarian Real-Time (Anti-XSS Sanitasi) -->
+        <div class="w-full md:w-80">
+          <label for="search-input" class="sr-only">Cari produk atau komoditas sawit</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            </span>
+            <input
+              type="search"
+              id="search-input"
+              maxlength="60"
+              placeholder="Cari TBS, Brondolan, Bibit, Pupuk..."
+              class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50/60 focus:bg-white focus:border-[#005A32] focus:ring-2 focus:ring-[#C7E9C0] text-sm text-slate-800 outline-none transition-all"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Kategori Tabs -->
+      <div id="category-filters" class="flex flex-wrap items-center gap-2 sm:gap-2.5 mb-8" role="tablist" aria-label="Filter Kategori Produk">
+        <button type="button" data-category="Semua" class="category-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#005A32] text-white shadow-sm transition-all">
+          Semua Komoditas
+        </button>
+        <button type="button" data-category="TBS & Brondolan" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#C7E9C0]/45 text-[#005A32] hover:bg-[#C7E9C0] transition-all">
+          TBS &amp; Brondolan
+        </button>
+        <button type="button" data-category="Bibit Unggul" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#C7E9C0]/45 text-[#005A32] hover:bg-[#C7E9C0] transition-all">
+          Bibit Unggul
+        </button>
+        <button type="button" data-category="Pupuk & Perawatan" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#C7E9C0]/45 text-[#005A32] hover:bg-[#C7E9C0] transition-all">
+          Pupuk &amp; Perawatan
+        </button>
+        <button type="button" data-category="Limbah & Biomassa" class="category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#C7E9C0]/45 text-[#005A32] hover:bg-[#C7E9C0] transition-all">
+          Cangkang / Biomassa
+        </button>
+      </div>
+
+      <!-- Grid Kartu Produk (Di-render secara aman via DOM API & textContent) -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+        <!-- Kartu produk disuntikkan via app.js menggunakan document.createElement & textContent -->
+      </div>
+
+      <!-- Empty State saat Pencarian Tidak Ditemukan -->
+      <div id="empty-search-state" class="hidden text-center py-14 px-4 rounded-3xl border-2 border-dashed border-[#C7E9C0] bg-[#C7E9C0]/15 mt-6">
+        <p class="text-lg font-bold text-[#005A32]">Komoditas tidak ditemukan</p>
+        <p class="text-sm text-slate-600 mt-1">Coba gunakan kata kunci lain seperti "TBS", "Tenera", "NPK", atau "Cangkang".</p>
+        <button type="button" id="btn-reset-filter" class="mt-4 px-5 py-2.5 rounded-xl bg-[#005A32] text-white text-sm font-semibold hover:bg-[#004224] transition-colors">
+          Tampilkan Semua Katalog
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== TENTANG KAMI (PROPORSI HIJAU MUDA & HIJAU TUA) ==================== -->
+  <section id="tentang" class="py-14 sm:py-20 bg-[#C7E9C0]/30 border-t border-[#C7E9C0]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-6 space-y-5">
+          <span class="inline-block px-3 py-1 rounded-full bg-white text-[#005A32] text-xs font-bold uppercase tracking-wider shadow-sm">
+            Tentang Tualang Sawit
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">
+            Ekosistem Niaga Kelapa Sawit yang Adil, Akurat, dan Berkelanjutan
+          </h2>
+          <p class="text-slate-700 text-sm sm:text-base leading-relaxed">
+            <strong>Tualang Sawit</strong> hadir menjembatani petani swadaya, kelompok tani, pengepul (RAM), dan pabrik kelapa sawit (PKS). Kami berkomitmen menyajikan informasi harga acuan yang jujur berdasarkan ketetapan dinas perkebunan dan kualitas rendemen riil di lapangan.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-white border border-[#C7E9C0] shadow-sm">
+              <div class="w-9 h-9 rounded-xl bg-[#005A32] text-[#C7E9C0] flex items-center justify-center font-bold mb-3">01</div>
+              <h3 class="font-bold text-slate-900 text-sm">Sortasi Transparan</h3>
+              <p class="text-xs text-slate-600 mt-1">Pemeriksaan mutu buah dilakukan terbuka di hadapan mitra pengantar tanpa potongan tersembunyi.</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-[#C7E9C0] shadow-sm">
+              <div class="w-9 h-9 rounded-xl bg-[#D97706] text-white flex items-center justify-center font-bold mb-3">02</div>
+              <h3 class="font-bold text-slate-900 text-sm">Sarana Kebun Tersertifikasi</h3>
+              <p class="text-xs text-slate-600 mt-1">Menyediakan kecambah &amp; bibit DxP Tenera resmi serta pupuk majemuk untuk mendongkrak tonase panen.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="rounded-3xl bg-white p-6 sm:p-8 shadow-xl border border-[#C7E9C0]">
+            <h3 class="text-lg font-extrabold text-[#005A32] mb-4">Alur Pemesanan &amp; Transaksi Mitra</h3>
+            <ol class="space-y-4">
+              <li class="flex items-start gap-3.5">
+                <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[#C7E9C0] text-[#005A32] font-extrabold text-xs flex items-center justify-center mt-0.5">1</span>
+                <div>
+                  <p class="font-bold text-sm text-slate-900">Pilih Komoditas atau Sarana Kebun</p>
+                  <p class="text-xs text-slate-600">Masukkan jenis TBS, bibit, pupuk, atau cangkang sawit ke dalam keranjang belanja beserta kuantitasnya.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3.5">
+                <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[#C7E9C0] text-[#005A32] font-extrabold text-xs flex items-center justify-center mt-0.5">2</span>
+                <div>
+                  <p class="font-bold text-sm text-slate-900">Isi Data Pemesan &amp; Lokasi Kebun/RAM</p>
+                  <p class="text-xs text-slate-600">Lengkapi nama mitra dan alamat pengiriman/penjemputan armada di panel keranjang.</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-3.5">
+                <span class="flex-shrink-0 w-7 h-7 rounded-full bg-[#D97706] text-white font-extrabold text-xs flex items-center justify-center mt-0.5">3</span>
+                <div>
+                  <p class="font-bold text-sm text-slate-900">Checkout Otomatis ke WhatsApp Niaga</p>
+                  <p class="text-xs text-slate-600">Rincian harga dan total estimasi diformat rapi untuk konfirmasi jadwal timbang atau pengiriman.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-[#005A32] text-white py-12 border-t border-[#C7E9C0]/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-white/15">
+        <div>
+          <span class="text-xl font-extrabold tracking-tight text-white">Tualang Sawit</span>
+          <p class="text-sm text-[#C7E9C0] mt-1">Pusat Informasi Harga TBS &amp; Katalog Komoditas Kelapa Sawit Indonesia.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="#beranda" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold transition-colors">Beranda</a>
+          <a href="#katalog" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold transition-colors">Katalog Harga</a>
+          <button type="button" id="btn-open-security-modal-footer" class="px-4 py-2 rounded-xl bg-[#D97706] hover:bg-[#B45309] text-xs font-bold transition-colors">
+            Kode Multi-File &amp; Vercel.json
+          </button>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/75">
+        <p>&copy; <span id="footer-year">2026</span> Tualang Sawit. Hak Cipta Dilindungi Undang-Undang.</p>
+        <p>Dilindungi Arsitektur Keamanan Web Modern (Strict CSP, Anti-XSS, Zero Secrets).</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== DRAWER KERANJANG BELANJA (LOCALSTORAGE) ==================== -->
+  <div id="cart-backdrop" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-xs transition-opacity" aria-hidden="true">
+    <div id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" class="fixed inset-y-0 right-0 w-full max-w-md bg-white shadow-2xl flex flex-col animate-drawer">
+      
+      <!-- Header Drawer -->
+      <div class="px-6 py-5 bg-[#005A32] text-white flex items-center justify-between">
+        <div>
+          <h2 id="cart-drawer-title" class="text-lg font-extrabold">Keranjang Pesanan</h2>
+          <p class="text-xs text-[#C7E9C0]">Tersimpan otomatis di perangkat Anda</p>
+        </div>
+        <button type="button" id="btn-close-cart" aria-label="Tutup Keranjang" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Daftar Item Keranjang -->
+      <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-3.5 bg-slate-50/50">
+        <!-- Item dirender aman via DOM API -->
+      </div>
+
+      <!-- Form & Ringkasan Checkout WhatsApp -->
+      <div class="p-5 bg-white border-t border-slate-200 space-y-4">
+        <div class="space-y-2.5">
+          <div>
+            <label for="customer-name" class="block text-xs font-bold text-slate-700 mb-1">Nama Mitra / Pemesan *</label>
+            <input type="text" id="customer-name" maxlength="50" placeholder="Contoh: Pak Budi (Kelompok Tani Makmur)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-[#005A32] focus:ring-2 focus:ring-[#C7E9C0] outline-none" />
+          </div>
+          <div>
+            <label for="customer-location" class="block text-xs font-bold text-slate-700 mb-1">Lokasi Kebun / Alamat Pengiriman *</label>
+            <input type="text" id="customer-location" maxlength="80" placeholder="Contoh: Kec. Tualang, Kab. Siak" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:border-[#005A32] focus:ring-2 focus:ring-[#C7E9C0] outline-none" />
+          </div>
+        </div>
+
+        <div class="p-3.5 rounded-2xl bg-[#C7E9C0]/35 flex items-center justify-between">
+          <span class="text-sm font-bold text-slate-700">Total Estimasi</span>
+          <span id="cart-total-price" class="text-lg font-extrabold text-[#005A32]">Rp 0</span>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button type="button" id="btn-clear-cart" class="px-4 py-3 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-100 text-xs font-bold transition-colors">
+            Kosongkan
+          </button>
+          <button type="button" id="btn-checkout-wa" class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#D97706] hover:bg-[#B45309] text-white text-sm font-extrabold shadow-md transition-all">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/></svg>
+            <span>Checkout WhatsApp</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL KONFIGURASI PRODUKSI (MULTI-FILE & VERCEL.JSON) ==================== -->
+  <div id="security-modal-backdrop" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4" aria-hidden="true">
+    <div role="dialog" aria-modal="true" aria-labelledby="security-modal-title" class="bg-white w-full max-w-4xl max-h-[90vh] rounded-3xl shadow-2xl border border-[#C7E9C0] flex flex-col overflow-hidden">
+      
+      <!-- Header Modal -->
+      <div class="px-6 py-4 bg-[#005A32] text-white flex items-center justify-between">
+        <div>
+          <h2 id="security-modal-title" class="text-base sm:text-lg font-extrabold">Konfigurasi Produksi Multi-File &amp; Hardening Security</h2>
+          <p class="text-xs text-[#C7E9C0]">Salin masing-masing berkas untuk struktur proyek GitHub &amp; Vercel Anda</p>
+        </div>
+        <button type="button" id="btn-close-security-modal" aria-label="Tutup Modal" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Tab Berkas -->
+      <div class="px-6 pt-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex flex-wrap gap-1.5" role="tablist">
+          <button type="button" data-code-tab="vercel.json" class="code-tab-btn active px-3.5 py-2 rounded-t-xl text-xs font-extrabold bg-white text-[#005A32] border-t border-x border-slate-200">
+            vercel.json (8 Security Headers)
+          </button>
+          <button type="button" data-code-tab="style.css" class="code-tab-btn px-3.5 py-2 rounded-t-xl text-xs font-semibold text-slate-600 hover:text-[#005A32]">
+            style.css
+          </button>
+          <button type="button" data-code-tab="app.js" class="code-tab-btn px-3.5 py-2 rounded-t-xl text-xs font-semibold text-slate-600 hover:text-[#005A32]">
+            app.js (Anti-XSS)
+          </button>
+          <button type="button" data-code-tab="index.html" class="code-tab-btn px-3.5 py-2 rounded-t-xl text-xs font-semibold text-slate-600 hover:text-[#005A32]">
+            index.html (CSP Ketat)
+          </button>
+        </div>
+        <button type="button" id="btn-copy-code" class="mb-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#D97706] hover:bg-[#B45309] text-white text-xs font-bold shadow-xs transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          <span>Salin Kode Berkas</span>
+        </button>
+      </div>
+
+      <!-- Area Penampil Kode (Menggunakan textContent agar 100% aman) -->
+      <div class="flex-1 overflow-auto p-5 bg-slate-900 text-emerald-300 font-mono text-xs leading-relaxed">
+        <pre id="code-viewer-pre" class="whitespace-pre-wrap break-words"></pre>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== MODAL KONFIRMASI KOSONGKAN KERANJANG (PENGGANTI CONFIRM) ==================== -->
+  <div id="confirm-modal-backdrop" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4" aria-hidden="true">
+    <div role="dialog" aria-modal="true" class="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-slate-100 space-y-4">
+      <div class="w-11 h-11 rounded-2xl bg-amber-100 text-[#D97706] flex items-center justify-center">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+      </div>
+      <div>
+        <h3 class="text-base font-extrabold text-slate-900">Kosongkan Keranjang?</h3>
+        <p class="text-xs sm:text-sm text-slate-600 mt-1">Seluruh daftar komoditas sawit yang sudah Anda pilih akan dihapus dari penyimpanan lokal.</p>
+      </div>
+      <div class="flex items-center justify-end gap-2.5 pt-2">
+        <button type="button" id="btn-cancel-clear" class="px-4 py-2.5 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 hover:bg-slate-50">Batal</button>
+        <button type="button" id="btn-confirm-clear" class="px-4 py-2.5 rounded-xl bg-[#005A32] text-white text-xs font-bold hover:bg-[#004224]">Ya, Kosongkan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TOAST NOTIFICATION CONTAINER ==================== -->
+  <div id="toast-container" aria-live="polite" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2.5 max-w-xs sm:max-w-sm pointer-events-none"></div>
+
+  <!-- ==================== LOGIKA APLIKASI AMAN (ANTI-XSS & LOCALSTORAGE) ==================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. KONFIGURASI & DATA KATALOG PRODUK SAWIT (ZERO HARDCODED SECRETS)
+      const STORAGE_KEY = 'tualang_sawit_cart_v1';
+      const WA_BUSINESS_NUMBER = '6281200008899'; // Nomor niaga publik resmi
+
+      const CATALOG_PRODUCTS = [
+        {
+          id: 'tbs-3-5',
+          name: 'TBS Sawit Umur 3 - 5 Tahun',
+          category: 'TBS & Brondolan',
+          price: 2690,
+          unit: 'kg',
+          minOrder: 100,
+          badge: 'Buah Pasir Segar',
+          rendemen: 'Rendemen ±18.5%',
+          description: 'Tandan Buah Segar dari tanaman menghasilkan muda (TM 1-3). Dipanen matang fraksi 2 dengan tangkai dipotong pendek huruf V.'
+        },
+        {
+          id: 'tbs-10-20',
+          name: 'TBS Sawit Umur 10 - 20 Tahun',
+          category: 'TBS & Brondolan',
+          price: 3180,
+          unit: 'kg',
+          minOrder: 100,
+          badge: 'Harga Tertinggi',
+          rendemen: 'Rendemen ±22.4%',
+          description: 'Tandan Buah Segar kualitas super dari tanaman puncak produksi. Daging buah tebal, berondolan padat, siap olah pabrik (PKS).'
+        },
+        {
+          id: 'brondolan-segar',
+          name: 'Brondolan Sawit Segar Bersih',
+          category: 'TBS & Brondolan',
+          price: 3450,
+          unit: 'kg',
+          minOrder: 50,
+          badge: 'Rendemen Tinggi',
+          rendemen: 'Rendemen ±24.0%',
+          description: 'Brondolan lepas alami berwarna merah oranye cerah, bebas sampah pasir/kelopak, dengan kadar asam lemak bebas (ALB) rendah.'
+        },
+        {
+          id: 'bibit-dxp-tenera',
+          name: 'Bibit Unggul DxP Tenera (Siap Tanam)',
+          category: 'Bibit Unggul',
+          price: 68000,
+          unit: 'batang',
+          minOrder: 20,
+          badge: 'Bersertifikat Resmi',
+          rendemen: 'Potensi 32 Ton/Ha/Thn',
+          description: 'Bibit kelapa sawit Main Nursery umur 12 bulan varietas DxP Tenera. Batang kokoh, daun sehat bebas hama, lengkap dokumen sertifikat.'
+        },
+        {
+          id: 'pupuk-npk-sawit',
+          name: 'Pupuk NPK Majemuk Sawit (13-6-27-4)',
+          category: 'Pupuk & Perawatan',
+          price: 425000,
+          unit: 'sak (50kg)',
+          minOrder: 2,
+          badge: 'Formulasi Buah Lebat',
+          rendemen: 'Kandungan Boron + MgO',
+          description: 'Pupuk majemuk khusus tanaman sawit menghasilkan. Tinggi Kalium (K) untuk memperberat bobot tandan dan meningkatkan rendemen minyak.'
+        },
+        {
+          id: 'cangkang-sawit-pks',
+          name: 'Cangkang Sawit / Palm Kernel Shell',
+          category: 'Limbah & Biomassa',
+          price: 1350,
+          unit: 'kg',
+          minOrder: 500,
+          badge: 'Bahan Bakar Boiler',
+          rendemen: 'Kalori > 4.200 kcal/kg',
+          description: 'Cangkang inti sawit kering alami (moisture < 15%), bersih dari serabut fiber. Ideal untuk bahan bakar boiler industri dan ekspor biomassa.'
+        }
+      ];
+
+      // 2. DATA KODE MULTI-FILE UNTUK MODAL DOKUMENTASI PRODUKSI
+      const MULTI_FILE_TEMPLATES = {
+        'vercel.json': `{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://placehold.co; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; frame-ancestors 'none'; upgrade-insecure-requests;"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin"
+        },
+        {
+          "key": "Cross-Origin-Resource-Policy",
+          "value": "same-origin"
+        }
+      ]
+    }
+  ]
+}`,
+        'style.css': `/* style.css — Tualang Sawit Production Stylesheet */
+:root {
+  --color-white: #FFFFFF;
+  --color-green-dark: #005A32;
+  --color-green-light: #C7E9C0;
+  --color-amber: #D97706;
+}
+
+body {
+  background-color: var(--color-white);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #FFFFFF; }
+::-webkit-scrollbar-thumb {
+  background: #C7E9C0;
+  border-radius: 9999px;
+  border: 2px solid #FFFFFF;
+}
+::-webkit-scrollbar-thumb:hover { background: #005A32; }`,
+        'app.js': `// app.js — Modul Logika Aman (Zero innerHTML, Strict Input Validation)
+'use strict';
+
+const STORAGE_KEY = 'tualang_sawit_cart_v1';
+
+// Sanitasi teks input pengguna agar bebas karakter kontrol berbahaya
+function sanitizeText(raw, maxLen = 60) {
+  if (typeof raw !== 'string') return '';
+  return raw.replace(/[<>]/g, '').trim().slice(0, maxLen);
+}
+
+// Render elemen DOM secara aman menggunakan textContent (Anti-XSS)
+function createSafeElement(tag, className, textValue) {
+  const el = document.createElement(tag);
+  if (className) el.className = className;
+  if (textValue !== undefined && textValue !== null) {
+    el.textContent = String(textValue);
+  }
+  return el;
+}`,
+        'index.html': `<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tualang Sawit — Info Harga TBS & Katalog Sawit</title>
+  <!-- Cadangan CSP Ketat untuk Hosting Statis (GitHub Pages) -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me; frame-ancestors 'none';" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <!-- Struktur semantik header, hero, katalog, tentang kami, keranjang drawer -->
+</body>
+</html>`
+      };
+
+      // 3. STATE APLIKASI
+      let activeCategory = 'Semua';
+      let searchQuery = '';
+      let cart = loadCartFromStorage();
+
+      // 4. UTILITAS KEAMANAN & FORMATTER
+      function sanitizeInput(value, maxLength) {
+        if (typeof value !== 'string') return '';
+        return value.replace(/[<>]/g, '').trim().slice(0, maxLength);
+      }
+
+      function formatRupiah(amount) {
+        const numeric = Number(amount) || 0;
+        return new Intl.NumberFormat('id-ID', {
+          style: 'currency',
+          currency: 'IDR',
+          minimumFractionDigits: 0,
+          maximumFractionDigits: 0
+        }).format(numeric);
+      }
+
+      function createEl(tag, classes, text) {
+        const node = document.createElement(tag);
+        if (classes) node.className = classes;
+        if (text !== undefined && text !== null) {
+          node.textContent = String(text);
+        }
+        return node;
+      }
+
+      function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = createEl(
+          'div',
+          'pointer-events-auto animate-toast flex items-center gap-3 px-4 py-3 rounded-2xl shadow-xl border text-xs sm:text-sm font-semibold ' +
+            (type === 'warning'
+              ? 'bg-amber-50 border-amber-300 text-amber-900'
+              : 'bg-[#005A32] border-[#C7E9C0] text-white')
+        );
+
+        const dot = createEl(
+          'span',
+          'w-2.5 h-2.5 rounded-full flex-shrink-0 ' + (type === 'warning' ? 'bg-[#D97706]' : 'bg-[#C7E9C0]')
+        );
+        const label = createEl('span', 'leading-snug', message);
+
+        toast.appendChild(dot);
+        toast.appendChild(label);
+        container.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.25s ease';
+          setTimeout(() => {
+            if (toast.parentNode) toast.parentNode.removeChild(toast);
+          }, 260);
+        }, 3000);
+      }
+
+      // 5. MANAJEMEN KERANJANG (LOCALSTORAGE DENGAN VALIDASI SKEMA)
+      function loadCartFromStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return [];
+          // Validasi tiap item agar hanya ID valid dari katalog yang dimuat
+          return parsed
+            .filter((item) => item && typeof item.id === 'string' && Number.isInteger(item.qty) && item.qty > 0)
+            .map((item) => {
+              const found = CATALOG_PRODUCTS.find((p) => p.id === item.id);
+              return found ? { id: found.id, qty: Math.min(item.qty, 100000) } : null;
+            })
+            .filter(Boolean);
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function saveCartToStorage() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+        } catch (err) {
+          showToast('Penyimpanan lokal browser penuh.', 'warning');
+        }
+      }
+
+      function addToCart(productId) {
+        const product = CATALOG_PRODUCTS.find((p) => p.id === productId);
+        if (!product) return;
+
+        const existing = cart.find((item) => item.id === productId);
+        if (existing) {
+          existing.qty += product.minOrder;
+        } else {
+          cart.push({ id: product.id, qty: product.minOrder });
+        }
+
+        saveCartToStorage();
+        updateCartUI();
+        showToast(product.name + ' (+' + product.minOrder + ' ' + product.unit + ') ditambahkan.');
+      }
+
+      function updateCartQuantity(productId, delta) {
+        const product = CATALOG_PRODUCTS.find((p) => p.id === productId);
+        if (!product) return;
+
+        const idx = cart.findIndex((item) => item.id === productId);
+        if (idx === -1) return;
+
+        const newQty = cart[idx].qty + delta;
+        if (newQty <= 0) {
+          cart.splice(idx, 1);
+          showToast(product.name + ' dihapus dari keranjang.', 'warning');
+        } else {
+          cart[idx].qty = newQty;
+        }
+
+        saveCartToStorage();
+        updateCartUI();
+      }
+
+      // 6. RENDER KATALOG PRODUK (100% DOM API + TEXTCONTENT)
+      function renderCatalog() {
+        const grid = document.getElementById('product-grid');
+        const emptyState = document.getElementById('empty-search-state');
+        if (!grid || !emptyState) return;
+
+        // Bersihkan kontainer secara aman
+        while (grid.firstChild) {
+          grid.removeChild(grid.firstChild);
+        }
+
+        const keyword = searchQuery.toLowerCase();
+        const filtered = CATALOG_PRODUCTS.filter((item) => {
+          const matchCat = activeCategory === 'Semua' || item.category === activeCategory;
+          const matchText =
+            item.name.toLowerCase().includes(keyword) ||
+            item.description.toLowerCase().includes(keyword) ||
+            item.category.toLowerCase().includes(keyword);
+          return matchCat && matchText;
+        });
+
+        if (filtered.length === 0) {
+          emptyState.classList.remove('hidden');
+          return;
+        }
+        emptyState.classList.add('hidden');
+
+        filtered.forEach((product) => {
+          const card = createEl(
+            'article',
+            'rounded-3xl bg-white border border-slate-200/90 hover:border-[#005A32] p-6 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group'
+          );
+
+          // Bagian Atas Kartu
+          const topSection = createEl('div', 'space-y-3.5');
+
+          const badgeRow = createEl('div', 'flex items-center justify-between gap-2');
+          const catBadge = createEl('span', 'px-3 py-1 rounded-full bg-[#C7E9C0]/60 text-[#005A32] text-[11px] font-bold', product.category);
+          const statusBadge = createEl('span', 'px-2.5 py-1 rounded-lg bg-amber-50 text-[#D97706] text-[11px] font-bold', product.badge);
+          badgeRow.appendChild(catBadge);
+          badgeRow.appendChild(statusBadge);
+
+          const title = createEl('h3', 'text-lg font-extrabold text-slate-900 group-hover:text-[#005A32] transition-colors', product.name);
+          const desc = createEl('p', 'text-xs sm:text-sm text-slate-600 leading-relaxed', product.description);
+
+          const specBox = createEl('div', 'inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-100 text-xs font-semibold text-slate-700');
+          const specDot = createEl('span', 'w-2 h-2 rounded-full bg-[#005A32]');
+          const specText = createEl('span', '', product.rendemen + ' • Min. ' + product.minOrder + ' ' + product.unit);
+          specBox.appendChild(specDot);
+          specBox.appendChild(specText);
+
+          topSection.appendChild(badgeRow);
+          topSection.appendChild(title);
+          topSection.appendChild(desc);
+          topSection.appendChild(specBox);
+
+          // Bagian Bawah Kartu (Harga & Tombol)
+          const bottomSection = createEl('div', 'pt-5 mt-5 border-t border-slate-100 flex items-center justify-between gap-3');
+
+          const priceWrap = createEl('div');
+          const priceLabel = createEl('span', 'block text-[11px] font-medium text-slate-400 uppercase', 'Harga Acuan');
+          const priceVal = createEl('span', 'text-lg sm:text-xl font-extrabold text-[#005A32]', formatRupiah(product.price));
+          const unitVal = createEl('span', 'text-xs font-semibold text-slate-500', ' / ' + product.unit);
+          const priceLine = createEl('div');
+          priceLine.appendChild(priceVal);
+          priceLine.appendChild(unitVal);
+          priceWrap.appendChild(priceLabel);
+          priceWrap.appendChild(priceLine);
+
+          const addBtn = createEl(
+            'button',
+            'px-4 py-2.5 rounded-xl bg-[#005A32] hover:bg-[#004224] text-white text-xs sm:text-sm font-bold shadow-sm transition-all active:scale-95 cursor-pointer',
+            '+ Keranjang'
+          );
+          addBtn.type = 'button';
+          addBtn.setAttribute('aria-label', 'Tambah ' + product.name + ' ke keranjang');
+          addBtn.addEventListener('click', () => addToCart(product.id));
+
+          bottomSection.appendChild(priceWrap);
+          bottomSection.appendChild(addBtn);
+
+          card.appendChild(topSection);
+          card.appendChild(bottomSection);
+          grid.appendChild(card);
+        });
+      }
+
+      // 7. RENDER UI KERANJANG BELANJA
+      function updateCartUI() {
+        const badge = document.getElementById('cart-badge');
+        const container = document.getElementById('cart-items-container');
+        const totalEl = document.getElementById('cart-total-price');
+        if (!badge || !container || !totalEl) return;
+
+        badge.textContent = String(cart.length);
+
+        while (container.firstChild) {
+          container.removeChild(container.firstChild);
+        }
+
+        if (cart.length === 0) {
+          const emptyBox = createEl('div', 'text-center py-12 px-4');
+          const emptyTitle = createEl('p', 'text-sm font-bold text-slate-700', 'Keranjang Anda masih kosong');
+          const emptySub = createEl('p', 'text-xs text-slate-500 mt-1', 'Pilih TBS, bibit unggul, atau pupuk dari katalog untuk mulai menghitung estimasi.');
+          emptyBox.appendChild(emptyTitle);
+          emptyBox.appendChild(emptySub);
+          container.appendChild(emptyBox);
+          totalEl.textContent = formatRupiah(0);
+          return;
+        }
+
+        let grandTotal = 0;
+
+        cart.forEach((item) => {
+          const product = CATALOG_PRODUCTS.find((p) => p.id === item.id);
+          if (!product) return;
+
+          const subtotal = product.price * item.qty;
+          grandTotal += subtotal;
+
+          const row = createEl('div', 'p-4 rounded-2xl bg-white border border-slate-200 shadow-xs space-y-3');
+
+          const headerRow = createEl('div', 'flex items-start justify-between gap-2');
+          const nameEl = createEl('h4', 'text-sm font-extrabold text-slate-900 leading-snug', product.name);
+          const subEl = createEl('span', 'text-xs font-extrabold text-[#005A32] whitespace-nowrap', formatRupiah(subtotal));
+          headerRow.appendChild(nameEl);
+          headerRow.appendChild(subEl);
+
+          const controlRow = createEl('div', 'flex items-center justify-between pt-1');
+          const rateInfo = createEl('span', 'text-xs text-slate-500', formatRupiah(product.price) + ' / ' + product.unit);
+
+          const stepper = createEl('div', 'inline-flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl');
+          const btnMinus = createEl('button', 'w-7 h-7 rounded-lg bg-white text-slate-700 font-bold text-sm shadow-2xs hover:bg-slate-200', '-');
+          btnMinus.type = 'button';
+          btnMinus.setAttribute('aria-label', 'Kurangi jumlah ' + product.name);
+          btnMinus.addEventListener('click', () => updateCartQuantity(product.id, -product.minOrder));
+
+          const qtyLabel = createEl('span', 'px-2 text-xs font-extrabold text-slate-800', item.qty + ' ' + product.unit);
+
+          const btnPlus = createEl('button', 'w-7 h-7 rounded-lg bg-[#005A32] text-white font-bold text-sm shadow-2xs hover:bg-[#004224]', '+');
+          btnPlus.type = 'button';
+          btnPlus.setAttribute('aria-label', 'Tambah jumlah ' + product.name);
+          btnPlus.addEventListener('click', () => updateCartQuantity(product.id, product.minOrder));
+
+          stepper.appendChild(btnMinus);
+          stepper.appendChild(qtyLabel);
+          stepper.appendChild(btnPlus);
+
+          controlRow.appendChild(rateInfo);
+          controlRow.appendChild(stepper);
+
+          row.appendChild(headerRow);
+          row.appendChild(controlRow);
+          container.appendChild(row);
+        });
+
+        totalEl.textContent = formatRupiah(grandTotal);
+      }
+
+      // 8. CHECKOUT WHATSAPP TERSTRUKTUR
+      function handleWhatsAppCheckout() {
+        if (cart.length === 0) {
+          showToast('Keranjang masih kosong. Pilih komoditas terlebih dahulu.', 'warning');
+          return;
+        }
+
+        const nameInput = document.getElementById('customer-name');
+        const locInput = document.getElementById('customer-location');
+
+        const customerName = sanitizeInput(nameInput ? nameInput.value : '', 50);
+        const customerLocation = sanitizeInput(locInput ? locInput.value : '', 80);
+
+        if (customerName.length < 2) {
+          showToast('Mohon isi Nama Mitra / Pemesan minimal 2 karakter.', 'warning');
+          if (nameInput) nameInput.focus();
+          return;
+        }
+
+        if (customerLocation.length < 3) {
+          showToast('Mohon isi Lokasi Kebun / Alamat Pengiriman.', 'warning');
+          if (locInput) locInput.focus();
+          return;
+        }
+
+        let grandTotal = 0;
+        const lines = [
+          'Halo Admin Niaga *Tualang Sawit*,',
+          'Saya ingin melakukan konfirmasi pemesanan / transaksi komoditas sawit:',
+          '',
+          '*Data Mitra:*',
+          '• Nama: ' + customerName,
+          '• Lokasi: ' + customerLocation,
+          '',
+          '*Rincian Komoditas:*'
+        ];
+
+        cart.forEach((item, index) => {
+          const product = CATALOG_PRODUCTS.find((p) => p.id === item.id);
+          if (!product) return;
+          const subtotal = product.price * item.qty;
+          grandTotal += subtotal;
+          lines.push(
+            (index + 1) +
+              '. ' +
+              product.name +
+              ' (' +
+              item.qty +
+              ' ' +
+              product.unit +
+              ' x ' +
+              formatRupiah(product.price) +
+              ') = *' +
+              formatRupiah(subtotal) +
+              '*'
+          );
+        });
+
+        lines.push('');
+        lines.push('*Total Estimasi: ' + formatRupiah(grandTotal) + '*');
+        lines.push('Mohon informasi jadwal timbang / ketersediaan stok. Terima kasih.');
+
+        const encodedMessage = encodeURIComponent(lines.join('\n'));
+        const waUrl = 'https://wa.me/' + WA_BUSINESS_NUMBER + '?text=' + encodedMessage;
+
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+        showToast('Mengarahkan ke WhatsApp Niaga Tualang Sawit...');
+      }
+
+      // 9. INISIALISASI EVENT LISTENERS & MODAL
+      function initApp() {
+        // Set Tanggal Hari Ini
+        const dateLabel = document.getElementById('live-date-label');
+        if (dateLabel) {
+          const today = new Date().toLocaleDateString('id-ID', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+          });
+          dateLabel.textContent = today;
+        }
+
+        const yearEl = document.getElementById('footer-year');
+        if (yearEl) {
+          yearEl.textContent = String(new Date().getFullYear());
+        }
+
+        // Render awal
+        renderCatalog();
+        updateCartUI();
+
+        // Filter Kategori
+        const catButtons = document.querySelectorAll('.category-btn');
+        catButtons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            activeCategory = btn.getAttribute('data-category') || 'Semua';
+            catButtons.forEach((b) => {
+              b.className =
+                'category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#C7E9C0]/45 text-[#005A32] hover:bg-[#C7E9C0] transition-all';
+            });
+            btn.className =
+              'category-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#005A32] text-white shadow-sm transition-all';
+            renderCatalog();
+          });
+        });
+
+        // Pencarian Real-Time
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+          searchInput.addEventListener('input', (e) => {
+            searchQuery = sanitizeInput(e.target.value, 60);
+            renderCatalog();
+          });
+        }
+
+        // Reset Filter
+        const resetBtn = document.getElementById('btn-reset-filter');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', () => {
+            activeCategory = 'Semua';
+            searchQuery = '';
+            if (searchInput) searchInput.value = '';
+            catButtons.forEach((b) => {
+              const isAll = b.getAttribute('data-category') === 'Semua';
+              b.className = isAll
+                ? 'category-btn active px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-[#005A32] text-white shadow-sm transition-all'
+                : 'category-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold bg-[#C7E9C0]/45 text-[#005A32] hover:bg-[#C7E9C0] transition-all';
+            });
+            renderCatalog();
+          });
+        }
+
+        // Navigasi Mobile
+        const btnMobileMenu = document.getElementById('btn-mobile-menu');
+        const mobileNavPanel = document.getElementById('mobile-nav-panel');
+        if (btnMobileMenu && mobileNavPanel) {
+          btnMobileMenu.addEventListener('click', () => {
+            mobileNavPanel.classList.toggle('hidden');
+          });
+          document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+            link.addEventListener('click', () => mobileNavPanel.classList.add('hidden'));
+          });
+        }
+
+        // Drawer Keranjang
+        const cartBackdrop = document.getElementById('cart-backdrop');
+        const btnOpenCart = document.getElementById('btn-open-cart');
+        const btnCloseCart = document.getElementById('btn-close-cart');
+
+        if (btnOpenCart && cartBackdrop) {
+          btnOpenCart.addEventListener('click', () => cartBackdrop.classList.remove('hidden'));
+        }
+        if (btnCloseCart && cartBackdrop) {
+          btnCloseCart.addEventListener('click', () => cartBackdrop.classList.add('hidden'));
+        }
+        if (cartBackdrop) {
+          cartBackdrop.addEventListener('click', (e) => {
+            if (e.target === cartBackdrop) cartBackdrop.classList.add('hidden');
+          });
+        }
+
+        // Modal Konfirmasi Kosongkan Keranjang
+        const confirmBackdrop = document.getElementById('confirm-modal-backdrop');
+        const btnClearCart = document.getElementById('btn-clear-cart');
+        const btnCancelClear = document.getElementById('btn-cancel-clear');
+        const btnConfirmClear = document.getElementById('btn-confirm-clear');
+
+        if (btnClearCart && confirmBackdrop) {
+          btnClearCart.addEventListener('click', () => {
+            if (cart.length === 0) {
+              showToast('Keranjang sudah kosong.', 'warning');
+              return;
+            }
+            confirmBackdrop.classList.remove('hidden');
+          });
+        }
+        if (btnCancelClear && confirmBackdrop) {
+          btnCancelClear.addEventListener('click', () => confirmBackdrop.classList.add('hidden'));
+        }
+        if (btnConfirmClear && confirmBackdrop) {
+          btnConfirmClear.addEventListener('click', () => {
+            cart = [];
+            saveCartToStorage();
+            updateCartUI();
+            confirmBackdrop.classList.add('hidden');
+            showToast('Keranjang telah dikosongkan.');
+          });
+        }
+
+        // Checkout WhatsApp & Konsultasi Hero
+        const btnCheckoutWa = document.getElementById('btn-checkout-wa');
+        if (btnCheckoutWa) {
+          btnCheckoutWa.addEventListener('click', handleWhatsAppCheckout);
+        }
+
+        const btnHeroConsult = document.getElementById('btn-hero-wa-consult');
+        if (btnHeroConsult) {
+          btnHeroConsult.addEventListener('click', () => {
+            const msg = encodeURIComponent('Halo Tim Niaga Tualang Sawit, saya ingin menanyakan kuota DO / harga TBS hari ini.');
+            window.open('https://wa.me/' + WA_BUSINESS_NUMBER + '?text=' + msg, '_blank', 'noopener,noreferrer');
+          });
+        }
+
+        // Modal Kode Multi-File & Vercel.json
+        const secBackdrop = document.getElementById('security-modal-backdrop');
+        const codeViewer = document.getElementById('code-viewer-pre');
+        const codeTabs = document.querySelectorAll('.code-tab-btn');
+        let currentCodeTab = 'vercel.json';
+
+        function renderCodeTab(tabName) {
+          currentCodeTab = tabName;
+          if (codeViewer) {
+            codeViewer.textContent = MULTI_FILE_TEMPLATES[tabName] || '';
+          }
+          codeTabs.forEach((t) => {
+            const isActive = t.getAttribute('data-code-tab') === tabName;
+            t.className = isActive
+              ? 'code-tab-btn active px-3.5 py-2 rounded-t-xl text-xs font-extrabold bg-white text-[#005A32] border-t border-x border-slate-200'
+              : 'code-tab-btn px-3.5 py-2 rounded-t-xl text-xs font-semibold text-slate-600 hover:text-[#005A32]';
+          });
+        }
+
+        ['btn-open-security-modal-desktop', 'btn-open-security-modal-mobile', 'btn-open-security-modal-footer'].forEach(
+          (id) => {
+            const el = document.getElementById(id);
+            if (el && secBackdrop) {
+              el.addEventListener('click', () => {
+                if (mobileNavPanel) mobileNavPanel.classList.add('hidden');
+                renderCodeTab(currentCodeTab);
+                secBackdrop.classList.remove('hidden');
+              });
+            }
+          }
+        );
+
+        const btnCloseSec = document.getElementById('btn-close-security-modal');
+        if (btnCloseSec && secBackdrop) {
+          btnCloseSec.addEventListener('click', () => secBackdrop.classList.add('hidden'));
+        }
+        if (secBackdrop) {
+          secBackdrop.addEventListener('click', (e) => {
+            if (e.target === secBackdrop) secBackdrop.classList.add('hidden');
+          });
+        }
+
+        codeTabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const name = tab.getAttribute('data-code-tab') || 'vercel.json';
+            renderCodeTab(name);
+          });
+        });
+
+        const btnCopyCode = document.getElementById('btn-copy-code');
+        if (btnCopyCode) {
+          btnCopyCode.addEventListener('click', () => {
+            const textToCopy = MULTI_FILE_TEMPLATES[currentCodeTab] || '';
+            const tempArea = document.createElement('textarea');
+            tempArea.value = textToCopy;
+            tempArea.style.position = 'fixed';
+            tempArea.style.opacity = '0';
+            document.body.appendChild(tempArea);
+            tempArea.select();
+            try {
+              document.execCommand('copy');
+              showToast('Berkas ' + currentCodeTab + ' berhasil disalin ke clipboard!');
+            } catch (err) {
+              showToast('Gagal menyalin kode.', 'warning');
+            }
+            document.body.removeChild(tempArea);
+          });
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', initApp);
+    })();
+  </script>
+</body>
+</html>
+```
